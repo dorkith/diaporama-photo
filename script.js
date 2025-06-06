@@ -23,5 +23,5 @@ function nextImage() {
   showImage();
 }
 
-setInterval(nextImage, 3000); // change d’image toutes les 3 sec
+setInterval(nextImage, 3000);
 window.onload = showImage;
