@@ -1,27 +1,27 @@
-const imageFolder = "photos/";
-const imageCount = 10; // ← Change ce chiffre selon le nombre de photos
-const slideshow = document.getElementById("slideshow");
+const images = [
+  "1000013732.jpg",
+  "1000013735.jpg",
+  "1000013738.jpg",
+  "1000013741.jpg",
+  "1000013744.jpg",
+  "1000013747.jpg",
+  "1000013750.jpg",
+  "1000013753.jpg",
+  "1000013756.jpg",
+  "IMG_20250504_153323.jpg"
+];
+
 let currentIndex = 0;
-let slides = [];
 
-function preloadImages() {
-  for (let i = 1; i <= imageCount; i++) {
-    const img = document.createElement("img");
-    img.src = `${imageFolder}${i}.jpg`;
-    img.classList.add("slide");
-    if (i === 1) img.classList.add("active");
-    slideshow.appendChild(img);
-    slides.push(img);
-  }
+function showImage() {
+  const img = document.getElementById("slideshow");
+  img.src = "photo/" + images[currentIndex];
 }
 
-function startSlideshow() {
-  setInterval(() => {
-    slides[currentIndex].classList.remove("active");
-    currentIndex = (currentIndex + 1) % slides.length;
-    slides[currentIndex].classList.add("active");
-  }, 5000); // durée entre les photos en millisecondes
+function nextImage() {
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage();
 }
 
-preloadImages();
-startSlideshow();
+setInterval(nextImage, 3000); // change d’image toutes les 3 sec
+window.onload = showImage;
